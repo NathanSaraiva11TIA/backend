@@ -17,7 +17,7 @@ const database = mysql.createPool({
   password: DB_PASSWORD,
   database: DB_NAME,
   connectionLimit: 10
-});
+})
 
 // CADASTRO
 app.post("/cadastro", (req, res) => {
