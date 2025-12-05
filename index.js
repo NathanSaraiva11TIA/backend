@@ -8,7 +8,16 @@ app.use(express.json());
 
 const port = 3333;
 
-const { DB_HOST, DB_NAME, DB_USER, DB_PASSWORD } = process.env
+const { DB_HOST, BB_NAME, DB_USER, DB_PASSWORD } = process.env
+
+// Conexão
+const database = mysql.createPool({
+  host: DB_HOST,
+  user: DB_USER,
+  password: DB_PASSWORD,
+  database: BB_NAME,
+  connectionLimit: 10
+});
 
 // CADASTRO
 app.post("/cadastro", (req, res) => {
@@ -103,11 +112,3 @@ app.post("/login", (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor rodando em http://localhost:${port}`);
 });
-
-const database = mysql.createPool({
-    host: DB_HOST,
-    user: DB_USER,
-    password: DB_PASSWORD,
-    database: DB_NAME,
-    connectionLimit: 10
-})
